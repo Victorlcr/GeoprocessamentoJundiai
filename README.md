@@ -1,10 +1,15 @@
-# Processamento Geoespacial de Jundiaí
+# Geoprocessamento espacial de áreas verdes em Jundiaí
+
+### Requisitos
+
+- Python 3.12.3
+- venv
 
 ## Instalação
 
 Execute todos os comandos abaixo em ordem
 
-``` apt get update && apt get upgrade ```
+``` sudo apt update && sudo apt upgrade ```
 
 #### Acesse o diretório cloando, crie o ambiente virtual e ative-o
 
@@ -25,16 +30,14 @@ Servidor Frontend
 ``` curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash ```
 
 ``` export NVM_DIR="$HOME/.nvm" ```
-``` [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  ```
 
-``` source ~/.bashrc ```
+``` [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" ```
 
 ``` nvm install node ```
 
 ``` nvm install 14 ```
 
-```  npm install -g http-server ```
-
+``` npm install -g http-server ```
 
 #### Para iniciar os servidores execute
 
@@ -44,4 +47,4 @@ Back-end
 
 Front-end
 
-``` http-server -p 5500 ```
+``` cd ./frontend && http-server -p 5500 ```

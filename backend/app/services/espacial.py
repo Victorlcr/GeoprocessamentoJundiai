@@ -1,7 +1,7 @@
 from shapely.geometry import Point
 import geopandas as gpd
 
-def calculate_green_area(coordinates: tuple[float, float]):
+def calcular_area_verde(coordinates: tuple[float, float]):
     # Converter coordenadas para SIRGAS 2000 (EPSG:31983)
     point = gpd.GeoSeries([Point(coordinates)], crs="EPSG:4326").to_crs("EPSG:31983")[0]
     
@@ -11,7 +11,7 @@ def calculate_green_area(coordinates: tuple[float, float]):
     # Simular dados de áreas verdes (substitua com dados reais do MapBiomas)
     green_areas = {
         "total_area": 1000000,  # 1 km² em m²
-        "green_area": 250000,    # Exemplo: 25% de área verde
-        "percentage": 25.0
+        "area_verde": 250000,    # Exemplo: 25% de área verde
+        "porcentagem": 25.0
     }
     return green_areas
