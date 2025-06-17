@@ -1,17 +1,23 @@
 from shapely.geometry import Point
 import geopandas as gpd
+from .wfs_jundiai import carregar_areas_verdes
 
-def calcular_area_verde(coordinates: tuple[float, float]):
-    # Converter coordenadas para SIRGAS 2000 (EPSG:31983)
-    point = gpd.GeoSeries([Point(coordinates)], crs="EPSG:4326").to_crs("EPSG:31983")[0]
+def calcular_area_verde(coordenadas: tuple[float, float]):
+    # Carregar todas as camadas verdes
+    areas_verdes = carregar_camadas_verdes()
     
-    # Criar buffer de 1 km² (1000 metros)
-    buffer = point.buffer(1000)
+    # Criar buffer
+    ponto = Point(coordenadas)
+    buffer = ponto.buffer(1000)  # 1000 metros
     
-    # Simular dados de áreas verdes (substitua com dados reais do MapBiomas)
-    green_areas = {
-        "total_area": 1000000,  # 1 km² em m²
-        "area_verde": 250000,    # Exemplo: 25% de área verde
-        "porcentagem": 25.0
+    # Interseção com todas as áreas verdes
+    areas_verdes_buffer = gpd.overlay(areas_verdes, gpd.GeoDataFrame(geometry=[buffer], crs=areas_verdes.crs), how='intersection')
+    
+    # Cálculo da área verde total
+    area_verde = areas_verdes_buffer.geometry.area.sum()
+    
+    return {
+        "area_total": buffer.area,
+        "area_verde": area_verde,
+        "porcentagem": (area_verde / buffer.area) * 100
     }
-    return green_areas
