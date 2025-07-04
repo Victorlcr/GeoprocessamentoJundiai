@@ -47,4 +47,4 @@ Back-end
 
 Front-end
 
-``` cd ./frontend && http-server -p 5500 ```
+``` http-server -p 5500 ```

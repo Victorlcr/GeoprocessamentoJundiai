@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import analise
+from .routers import analise, grupos, wfs
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -12,7 +12,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 async def root():
     return {"message": "API de Análise de Áreas Verdes"}
+
+app.include_router(grupos.router, prefix="/api")
+app.include_router(wfs.router, prefix="/api")
+app.include_router(analise.router, prefix="/api")

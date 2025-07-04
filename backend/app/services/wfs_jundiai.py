@@ -123,6 +123,16 @@ def carregar_camadas(grupo: str, combinar: bool = True):
             # Garantir CRS consistente
             if gdf.crs is None:
                 gdf.crs = "EPSG:31983"
+
+            if not gdf.empty:
+                # 1. Corrigir geometrias inválidas
+                gdf['geometry'] = gdf.geometry.buffer(0)
+                
+                # 2. Filtrar apenas geometrias válidas
+                gdf = gdf[gdf.geometry.is_valid]
+                
+                # 3. Remover geometrias vazias
+                gdf = gdf[~gdf.geometry.is_empty]
             
             if combinar:
                 if gdf_combinado.empty:
