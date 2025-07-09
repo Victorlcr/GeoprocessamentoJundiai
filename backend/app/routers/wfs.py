@@ -9,7 +9,7 @@ import geopandas as gpd
 
 
 router = APIRouter()
-CAMINHO_CACHE = "backend/app/static"
+CAMINHO_CACHE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static'))
 
 @router.get("/wfs/{layer_name}")
 async def get_wfs_layer(layer_name: str):
