@@ -72,7 +72,7 @@ async function analisarAreaVerde() {
     }
     
     try {
-        const response = await fetch('http://localhost:8000/api/analise', {
+        const response = await fetch('https://geoprocessamentojundiai.onrender.com/api/analise', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ endereco: endereco })
@@ -100,7 +100,7 @@ async function loadGroup(groupName) {
         // Limpar camadas anteriores
         //clearLayers();
         
-        const response = await fetch(`http://localhost:8000/api/grupos/${groupName}`);
+        const response = await fetch(`https://geoprocessamentojundiai.onrender.com/api/grupos/${groupName}`);
         const groupData = await response.json();
         
         // Carregar cada camada do grupo
@@ -122,7 +122,7 @@ async function loadGroup(groupName) {
 // Função para carregar camada individual
 async function loadWFSLayer(layerName) {
     try {
-        const response = await fetch(`http://localhost:8000/api/wfs/${encodeURIComponent(layerName)}`);
+        const response = await fetch(`https://geoprocessamentojundiai.onrender.com/api/wfs/${encodeURIComponent(layerName)}`);
         const layerData = await response.json();
         
         // Verificar se há geometrias válidas
@@ -177,7 +177,7 @@ function clearLayers() {
 // Inicialização corrigida
 async function init() {
     try {
-        const response = await fetch('http://localhost:8000/api/grupos');
+        const response = await fetch('https://geoprocessamentojundiai.onrender.com/api/grupos');
         const groupsData = await response.json();
         const groupSelector = document.getElementById('group-selector');
         
