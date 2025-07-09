@@ -22,7 +22,6 @@ GRUPOS_CAMADAS = {
         "GeoJundiai:L_9321-2019_m04-Remanescente_Vegetacao-Cerrado",
         "GeoJundiai:L_9321-2019_m04-Remanescente_Vegetacao-Mata_Atlantica",
         "GeoJundiai:L_8683-2016_m13_parques-municipais",
-        "GeoJundiai:L_4095-1984_APAJundiai"
     ],
     "hidrografia": [
         "GeoJundiai:L_2405-1980_Manancial",

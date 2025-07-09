@@ -15,6 +15,7 @@ def calcular_area_verde(coordenadas: tuple[float, float]):
         
         # 2. Criar buffer de 1 km
         buffer = ponto.buffer(1000)  # 1000 metros
+        area_total = buffer.area
         
         # 3. Carregar áreas verdes
         areas_verdes = carregar_areas_verdes()
@@ -23,14 +24,20 @@ def calcular_area_verde(coordenadas: tuple[float, float]):
         areas_verdes = areas_verdes[areas_verdes.geometry.is_valid & 
                                    ~areas_verdes.geometry.is_empty]
         
-        # 5. Interseção espacial
-        areas_verdes_buffer = areas_verdes[areas_verdes.intersects(buffer)]
-        geojson_verde = json.loads(areas_verdes_buffer.to_json()) if not areas_verdes_buffer.empty else {"type": "FeatureCollection", "features": []}
+        # 5. Interseção espacial: primeiro filtra, depois recorta
+        areas_intersecao = areas_verdes[areas_verdes.intersects(buffer)].copy()
+        areas_intersecao['geometry'] = areas_intersecao.geometry.intersection(buffer)
+
+        # 6. Cálculo da área verde total dentro do buffer
+        area_verde = areas_intersecao.geometry.area.sum()
         
-        # 6. Cálculo da área verde total
-        area_verde = areas_verdes_buffer.geometry.area.sum()
-        area_total = buffer.area
-        
+        # 7. Converter para GeoJSON se não estiver vazio
+        geojson_verde = (
+            json.loads(areas_intersecao.to_json()) 
+            if not areas_intersecao.empty 
+            else {"type": "FeatureCollection", "features": []}
+        )
+
         return {
             "area_total": round(area_total / 1_000_000, 2),  # em km²
             "area_verde": round(area_verde / 1_000_000, 2),
@@ -40,8 +47,8 @@ def calcular_area_verde(coordenadas: tuple[float, float]):
                 "lon": coordenadas[0]
             },
             "geometrias_verdes": geojson_verde
-            }
-        
+        }
+
     except Exception as e:
         logger.error(f"Erro no cálculo de área verde: {str(e)}")
         raise
