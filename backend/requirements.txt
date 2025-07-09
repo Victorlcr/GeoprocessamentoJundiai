@@ -16,4 +16,4 @@ owslib>=0.29.2
 geopy==2.4.1
 
 # Validação de dados
-pydantic==2.6.4
+pydantic==1.10.13
