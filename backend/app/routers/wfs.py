@@ -1,8 +1,12 @@
 import os
 from fastapi import APIRouter, HTTPException
 import geopandas as gpd
+import os
 import json
 from ..services import estilos
+from fastapi import APIRouter, HTTPException
+import geopandas as gpd
+
 
 router = APIRouter()
 CAMINHO_CACHE = "backend/app/static"
