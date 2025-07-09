@@ -111,7 +111,7 @@ def carregar_camadas(grupo: str, combinar: bool = True):
     for camada in camadas:
         try:
             logger.info(f"Carregando camada: {camada}")
-            wfs = WebFeatureService(url=url_wfs, version='2.0.0')
+            wfs = WebFeatureService(url=url_wfs, version='2.0.0', timeout=60)
             response = wfs.getfeature(
                 typename=camada,
                 outputFormat='application/json',

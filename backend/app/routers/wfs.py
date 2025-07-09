@@ -11,7 +11,7 @@ async def get_wfs_layer(layer_name: str):
     """Obtém dados de uma camada WFS específica"""
     try:
         url_wfs = "https://geo.jundiai.sp.gov.br/geoserver/ows?service=WFS&acceptversions=2.0.0&request=GetCapabilities"
-        wfs = WebFeatureService(url=url_wfs, version='2.0.0')
+        wfs = WebFeatureService(url=url_wfs, version='2.0.0', timeout=60)
         
         response = wfs.getfeature(
             typename=layer_name,

@@ -2,7 +2,7 @@ from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 
 def geocodificar_endereco(endereco: str) -> tuple[float, float]:
-    geolocalizador = Nominatim(user_agent="jundiai-geoprocessamento", timeout=25)
+    geolocalizador = Nominatim(user_agent="jundiai-geoprocessamento", timeout=60)
     try:
         localizacao = geolocalizador.geocode(f"{endereco}, Jundiaí, Brasil")
         if localizacao:
