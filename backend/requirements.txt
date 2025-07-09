@@ -2,10 +2,12 @@
 fastapi==0.109.2
 uvicorn==0.27.1
 python-dotenv==1.0.1
+requests==2.31.0
 
 # Geoprocessamento
 geopandas==0.14.3
 shapely==2.0.3
+fiona==1.9.6
 pyproj==3.6.1
 owslib>=0.29.2
 
