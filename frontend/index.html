@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização Geoespacial - Jundiaí</title>
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+    <div id="map"></div>
+    <div id="sidebar">
+        <h2>Áreas Verdes em Jundiaí</h2>
+        <div class="control-panel">
+            <div class="input-wrapper-horizontal">
+                <img src="static/img/location-dot-solid.svg" class="input-icon-static" alt="Localização">
+                <input type="text" id="endereco-input" placeholder="Escolha o endereço">
+                <img src="static/img/magnifying-glass-solid.svg" class="input-icon-static" id="icon-right" alt="Buscar">
+            </div>
+            <div class="button-wrapper">
+                <button id="analyze-btn" class="btn">Analisar</button>
+            </div>
+            <div id="resultados" style="display: none;">
+                <h3>Resultados da Análise</h3>
+                <div class="result-item">
+                    <span class="result-label">Área Total:</span>
+                    <span class="result-value" id="area-total">0.00 km²</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Área Verde:</span>
+                    <span class="result-value" id="area-verde">0.00 km²</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Porcentagem Verde:</span>
+                    <span class="result-value" id="porcentagem">0.00%</span>
+                </div>
+            </div>
+        </div>            
+    </div>
+    <div id="overlay">
+        <div class="spinner"></div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="static/js/mapa.js"></script>
+    <script>
+        document.getElementById('icon-right').addEventListener('click', function() {
+            document.getElementById('endereco-input').focus();
+        });
+    </script>
+</body>
+</html>

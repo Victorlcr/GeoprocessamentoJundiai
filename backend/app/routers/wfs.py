@@ -1,28 +1,20 @@
+import os
 from fastapi import APIRouter, HTTPException
-from owslib.wfs import WebFeatureService
 import geopandas as gpd
 import json
 from ..services import estilos
 
 router = APIRouter()
+CAMINHO_CACHE = "backend/app/static"
 
 @router.get("/wfs/{layer_name}")
 async def get_wfs_layer(layer_name: str):
     """Obtém dados de uma camada WFS específica"""
     try:
-        url_wfs = "https://geo.jundiai.sp.gov.br/geoserver/ows?service=WFS&acceptversions=2.0.0&request=GetCapabilities"
-        wfs = WebFeatureService(url=url_wfs, version='2.0.0')
+        filename = layer_name.replace(":", "__") + ".geojson"
+        filepath = os.path.join(CAMINHO_CACHE, filename)
         
-        response = wfs.getfeature(
-            typename=layer_name,
-            outputFormat='application/json',
-            srsname='EPSG:31983'
-        )
-        
-        # Converter para GeoJSON
-        gdf = gpd.read_file(response)
-        gdf = gdf.to_crs("EPSG:4326")
-        gdf.geometry = gdf.geometry.simplify(0.0001)
+        gdf = gpd.read_file(filepath)
         geojson = json.loads(gdf.to_json())
         return {
             "layer": layer_name,

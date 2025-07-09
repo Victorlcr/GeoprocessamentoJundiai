@@ -1,10 +1,13 @@
 // Configurações globais
-const map = L.map('map').setView([-23.1864, -46.8844], 13);
+const map = L.map('map', {zoomControl: false}).setView([-23.1864, -46.8844], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
+L.control.zoom({ position: 'bottomright' }).addTo(map);
 
 // Referências para geometrias de análise
+let loadedLayers = {};
+let activeGroup = null;
 let pontoLayer = null;
 let bufferLayer = null;
 let areasVerdesLayer = null;
@@ -32,7 +35,6 @@ function limparGeometriasAnalise() {
 function exibirGeometriasAnalise(coordenadas, resultado) {
     // Limpar geometrias anteriores
     limparGeometriasAnalise();
-    
     // Adicionar ponto central
     pontoLayer = L.marker([coordenadas.lat, coordenadas.lon]).addTo(map)
         .bindPopup('Centro da análise');
@@ -70,6 +72,8 @@ async function analisarAreaVerde() {
         alert('Por favor, digite um endereço');
         return;
     }
+
+    document.getElementById('overlay').style.display = 'flex';
     
     try {
         const response = await fetch('http://localhost:8000/api/analise', {
@@ -90,32 +94,30 @@ async function analisarAreaVerde() {
         
     } catch (error) {
         console.error('Erro na análise:', error);
-        alert(`Erro: ${error.message}`);
+    } finally {
+        document.getElementById('overlay').style.display = 'none';
     }
 }
 
-// Função para carregar grupos (CORRIGIDA)
+// Função para carregar grupos
 async function loadGroup(groupName) {
-    try {
-        // Limpar camadas anteriores
-        //clearLayers();
-        
+    try {        
         const response = await fetch(`http://localhost:8000/api/grupos/${groupName}`);
         const groupData = await response.json();
         
+        activeGroup = groupName;
+        if (!loadedLayers[activeGroup]) {
+            loadedLayers[activeGroup] = [];
+        }
+
         // Carregar cada camada do grupo
         for (const layerName of groupData.camadas) {
             await loadWFSLayer(layerName).catch(error => {
                 console.error(`Falha crítica na camada ${layerName}:`, error);
-                alert(`Camada ${layerName} falhou: ${error.message}`);
             });
         }
-        
-        activeGroup = groupName;
-        
     } catch (error) {
         console.error('Erro ao carregar grupo:', error);
-        alert(`Erro ao carregar grupo: ${error.message}`);
     }
 }
 
@@ -155,42 +157,20 @@ async function loadWFSLayer(layerName) {
         map.fitBounds(layer.getBounds());
         
         // Armazenar referência
-        if (!loadedLayers[activeGroup]) loadedLayers[activeGroup] = [];
+        if (!loadedLayers[activeGroup]) {
+            loadedLayers[activeGroup] = [];
+        }
         loadedLayers[activeGroup].push(layer);
-        
     } catch (error) {
-        console.error(`Erro ao carregar camada ${layerName}:`, error);
-        alert(`Falha ao carregar ${layerName}: ${error.message}`);
-    }
-}
-
-// Função para limpar camadas
-function clearLayers() {
-    if (activeGroup && loadedLayers[activeGroup]) {
-        loadedLayers[activeGroup].forEach(layer => {
-            map.removeLayer(layer);
-        });
-        loadedLayers[activeGroup] = [];
+        console.error(`Falha ao carregar ${layerName}:`, error);
     }
 }
 
 // Inicialização corrigida
 async function init() {
     try {
-        const response = await fetch('http://localhost:8000/api/grupos');
-        const groupsData = await response.json();
-        const groupSelector = document.getElementById('group-selector');
-        
-        groupsData.grupos.forEach(group => {
-            const option = document.createElement('option');
-            option.value = group.nome;
-            option.textContent = `${group.nome} (${group.quantidade} camadas)`;
-            groupSelector.appendChild(option);
-        });
-        
-        groupSelector.addEventListener('change', (e) => {
-            if (e.target.value) loadGroup(e.target.value);
-        });
+        // Carregar grupo 'areas_verdes' automaticamente
+        await loadGroup("areas_verdes");
         
         // Registrar evento do botão de análise
         document.getElementById('analyze-btn').addEventListener('click', analisarAreaVerde);

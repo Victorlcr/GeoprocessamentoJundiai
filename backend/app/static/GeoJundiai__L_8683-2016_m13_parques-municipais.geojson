@@ -1,0 +1,25 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.1", "nome": "SITU - Eloy Chaves", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.966714522952664, -23.185311198492091 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.2", "nome": "SITU - Terminal Hortolândia", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.906595208715949, -23.165603337253341 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.3", "nome": "SITU - Terminal Central", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.888226141405625, -23.189800282412346 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.4", "nome": "SITU - Terminal Vila Arens", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.874301218095184, -23.193716878833232 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.5", "nome": "SITU - Terminal Colônia", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.854839322859583, -23.184124702294319 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.6", "nome": "SITU - Terminal CECAP", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.91505036786743, -23.144057676886238 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.7", "nome": "CPTM - Estação Ferroviária", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.872437313411403, -23.195179721279736 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.8", "nome": "SITU - Vila Rami", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.880073710952765, -23.216897241503336 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.9", "nome": "Rodoviária", "cod": null }, "geometry": { "type": "Point", "coordinates": [ -46.895562644712818, -23.207501538758518 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.10", "nome": "Parque da Cidade", "cod": "02" }, "geometry": { "type": "Point", "coordinates": [ -46.887198262700835, -23.154409825858536 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.11", "nome": "Parque do Trabalhador - Currupira", "cod": "07" }, "geometry": { "type": "Point", "coordinates": [ -46.919588056873124, -23.109670851108067 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.12", "nome": "Parque Comendador Antônio Carbonari - Parque da Uva", "cod": "06" }, "geometry": { "type": "Point", "coordinates": [ -46.898611628740639, -23.19176669864548 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.13", "nome": "Parque Botânico Eloy Chaves", "cod": "04" }, "geometry": { "type": "Point", "coordinates": [ -46.961016498516877, -23.188002791237039 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.14", "nome": "Jardim Botânico", "cod": "01" }, "geometry": { "type": "Point", "coordinates": [ -46.898273941953917, -23.173830962267306 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.15", "nome": "Parque Botânico Tulipas Professor Aziz Ab'Saber", "cod": "05" }, "geometry": { "type": "Point", "coordinates": [ -46.955397975917187, -23.157735512744622 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.16", "nome": "Unidade de Desenvolvimento Municipal (Unidam)", "cod": "03" }, "geometry": { "type": "Point", "coordinates": [ -46.89427195112939, -23.163040641648706 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.17", "nome": "Parque Jardim do Lago Antônio Garcia Machado", "cod": "08" }, "geometry": { "type": "Point", "coordinates": [ -46.860432133634887, -23.215026906553401 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.18", "nome": "Parque do Engordadouro Ângelo Costa", "cod": "09" }, "geometry": { "type": "Point", "coordinates": [ -46.931319418896493, -23.139462177639345 ] } },
+{ "type": "Feature", "properties": { "id": "L_8683-2016_m13_parques-municipais.19", "nome": "Parque Ecológico Morada das Vinhas José Roberto Mota 'Barroca'", "cod": "10" }, "geometry": { "type": "Point", "coordinates": [ -46.929010040606542, -23.13611401168858 ] } }
+]
+}
