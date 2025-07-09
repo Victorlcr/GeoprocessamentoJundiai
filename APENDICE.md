@@ -28,6 +28,13 @@
 - Fornece dados matriciais (raster), como imagens de satélite, modelos de elevação, etc.
 - Pode ser usado para análises de cobertura do solo se você souber interpretar ou classificar os pixels.
 
-### Designação das "Zonas Especiais"
+### Fontes de Dados
 
-- [Plano Diretor de Jundiaí](https://planodiretor.jundiai.sp.gov.br/wp-content/uploads/2018/07/PD_Reuni%C3%A3o-2018-7-18.pptx.pdf)
+- [GeoServer](https://geo.jundiai.sp.gov.br/geoserver/web/?0) publica dados a partir de qualquer fonte espacial que esteja nos padrões abertos
+- [Plano Diretor de Jundiaí](https://planodiretor.jundiai.sp.gov.br/wp-content/uploads/2018/07/PD_Reuni%C3%A3o-2018-7-18.pptx.pdf) - Designação das "Zonas Especiais"
+- [Camadas](METADADOS.md) e suas definições. Desenvolvido por CIJUN e disponiblizado pela Prefeitura de Jundiaí.
+
+### Ferramentas
+
+- GeoPandas: estende os tipos de dados usados ​​pelo Pandas para permitir operações espaciais em tipos geométricos. 
+- Leaflet: uma biblioteca JavaScript de código aberto usada para construir aplicativos virtuais de mapeamento.
