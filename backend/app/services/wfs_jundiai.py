@@ -17,7 +17,8 @@ GRUPOS_CAMADAS = {
     ]
 }
 
-CAMINHO_CACHE = "backend/app/static/"
+CAMINHO_CACHE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static'))
+
 
 def carregar_camadas(grupo: str, combinar: bool = True):
     """

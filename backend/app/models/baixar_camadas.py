@@ -3,7 +3,8 @@ import geopandas as gpd
 from owslib.wfs import WebFeatureService
 
 # Pasta onde os arquivos serão salvos
-PASTA_SAIDA = "backend/app/static/"
+PASTA_SAIDA = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static'))
+
 os.makedirs(PASTA_SAIDA, exist_ok=True)
 
 # Camadas que serão baixadas
